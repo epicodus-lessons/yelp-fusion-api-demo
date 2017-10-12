@@ -11,7 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epicodus.myrestaurants.models.Restaurant;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,11 +68,13 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                ArrayList<Restaurant> apiRestaurants = yelpService.processResults(response);
+                for (Restaurant restaurant : apiRestaurants){
+                    Log.d(TAG, restaurant.getName());
+                    Log.d(TAG, restaurant.getLongitude()+ "");
+                    Log.d(TAG, restaurant.getLatitude()+ "");
+                    Log.d(TAG, restaurant.getCategories()+ "");
                 }
             }
         });

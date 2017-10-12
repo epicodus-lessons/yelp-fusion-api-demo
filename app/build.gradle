@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
 
     repositories {
@@ -28,11 +28,9 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'YELP_CONSUMER_KEY', YelpConsumerKey
-        it.buildConfigField 'String', 'YELP_CONSUMER_SECRET', YelpConsumerSecret
         it.buildConfigField 'String', 'YELP_TOKEN', YelpToken
-        it.buildConfigField 'String', 'YELP_TOKEN_SECRET', YelpTokenSecret
     }
+
 
 }
 
@@ -45,6 +43,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'se.akerfeldt:okhttp-signpost:1.1.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
